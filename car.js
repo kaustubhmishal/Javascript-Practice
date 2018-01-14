@@ -9,19 +9,27 @@ var fiat = {
       this.started = true;
     }
     else{
-      console.l0g("No fuel. Please enter fuel");
+      console.log("No fuel. Please enter fuel");
     }
   },
   stop: function (){
-    console.log("Car stopped!");
-  },
-  drive : function(){
-    if(fuel > 0  && this.started){
-      console.log("Lets go for a long drive");
+      this.started = false;
+    if(this.fuel <= 0){
+        console.log("No fuel .Please refill");
     }
     else{
-      if(fuel < 0){
-        console.log("Add fuel");
+        console.log("Car Stopped puposely by driver");
+    }
+  },
+  drive : function(){
+    if(this.fuel > 0  && this.started){
+      console.log("Lets go for a long drive");
+      this.fuel = this.fuel -1;
+    }
+    else{
+      if(this.fuel <= 0){
+        console.log("Fuel Exaushted");
+        fiat.stop();
       }
       else{
           console.log("Engine not started .Please start the engine");
@@ -30,5 +38,16 @@ var fiat = {
   },
   addFuel : function (amount){
     this.fuel = this.fuel + amount;
+    console.log("Fuel added amount : " + amount);
   }
 }
+fiat.addFuel(2);
+fiat.start();
+fiat.drive();
+fiat.drive();
+fiat.drive();
+fiat.addFuel(2);
+fiat.start();
+fiat.drive();
+fiat.drive();
+fiat.drive();
